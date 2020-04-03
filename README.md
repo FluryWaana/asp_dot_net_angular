@@ -2,9 +2,9 @@
 ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE)
 
-Cette application à pour but la gestion d'évènement. Celle-ci est réalisée pour un cours.
-La conception du backend (API) est conçu avec le langage **C#**.
-Le conception du frontend est conçu à l'aide du framework **Angular 8**.
+Cette application à pour but la gestion d'évènement. Celle-ci est réalisée pour un cours.  
+La conception du backend (API) est conçu avec le langage **C#**.  
+Le conception du frontend est conçu à l'aide du framework **Angular 8**.  
 
 Si vous souhaitez utiliser cette application:
 
