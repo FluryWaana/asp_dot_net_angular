@@ -25,6 +25,7 @@ namespace ASP_MVC_ANGULAR.Models
         {
             modelBuilder.Entity<Participate>().HasKey(p => new { p.UserId, p.EventId });
             modelBuilder.Entity<User>().HasOne(p => p.Role).WithMany(b => b.Users);
+            modelBuilder.Entity<User>().HasIndex(p => p.Email).IsUnique(true);
             modelBuilder.Entity<Event>().HasOne(e => e.Cagegory).WithMany(ce => ce.Events);
 
             modelBuilder.Entity<Role>().HasData(
