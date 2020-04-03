@@ -10,8 +10,8 @@ Si vous souhaitez utiliser cette application:
 
 ## Prérequis
 
-- MySQL >=5.7.24
-- dotnet-ef >= 3.0.0
+- **MySQL >= 5.7.24**
+- **dotnet-ef >= 3.0.0**
 
 ## Importation de la base de données
 Dans le fichier **appsettings.json** qui se situe à la racine du projet modifier la ligne suivante en fonction de votre base de données
