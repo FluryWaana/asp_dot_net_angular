@@ -1,0 +1,43 @@
+<form class="mb-2 text-white" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-12">
+      <label for="title">Nom de l'évènement</label>
+      <input type="text" class="form-control" placeholder="Nom de l'évènement..." formControlName="title" id="title" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+        <div *ngIf="f.title.errors.required">Le titre est obligatoire</div>
+        <div *ngIf="f.title.errors.maxlength">Le nombre de caractère maximum est de 60</div>
+      </div>
+    </div>
+    <div class="col">
+      <label for="category">Catégorie</label>
+      <select class="form-control" id="category" formControlName="categoryId"
+              [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors }"
+              (change)="onChange()">
+        <option value="">Sélectionner une catégorie...</option>
+        <option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.categoryName | titlecase}}</option>
+      </select>
+      <div *ngIf="submitted && f.categoryId.errors" class="invalid-feedback">
+        <div *ngIf="f.categoryId.errors.required">La catégorie est obligatoire</div>
+      </div>
+    </div>
+    <div class="col">
+      <label for="eventDate">Date de l'évènement</label>
+      <input type="date" class="form-control" id="eventDate" formControlName="eventDate" [ngClass]="{ 'is-invalid': submitted && f.eventDate.errors }" />
+      <div *ngIf="submitted && f.eventDate.errors" class="invalid-feedback">
+        <div *ngIf="f.eventDate.errors.required">La date est obligatoire</div>
+      </div>
+    </div>
+    <div class="col-12 mb-2">
+      <label for="description">Description de l'évènement...</label>
+      <textarea id="description" formControlName="description" placeholder="Description de l'évènement..." class="form-control" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.description.errors }">
+      </textarea>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+        <div *ngIf="f.description.errors.required">La description est obligatoire</div>
+      </div>
+    </div>
+    <div class="col-12 text-right">
+      <button class="btn btn-primary">Modifier</button>
+      <button class="btn btn-danger ml-2" (click)="onCancel()">Annuler</button>
+    </div>
+  </div>
+</form>

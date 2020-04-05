@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form" class="mb-2">
+  <div class="form-row">
+    <div class="col-10">
+      <input [ngClass]="{ 'is-invalid': submitted && f.categoryName.errors }" autocomplete="off" class="form-control"
+             formControlName="categoryName"
+             placeholder="Nom de la catégorie..."
+             type="text"/>
+      <div *ngIf="submitted && f.categoryName.errors" class="invalid-feedback">
+        <div *ngIf="f.categoryName.errors.required">Le nom est obligatoire</div>
+        <div *ngIf="f.categoryName.errors.maxlength">Le nombre de caractère maximum est de 60</div>
+      </div>
+    </div>
+    <div class="col text-right">
+      <button class="btn btn-primary">Ajouter</button>
+      <button (click)="onReset()" class="btn btn-danger ml-2" type="reset">Annuler</button>
+    </div>
+  </div>
+</form>

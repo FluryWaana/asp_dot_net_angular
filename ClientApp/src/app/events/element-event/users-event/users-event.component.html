@@ -1,0 +1,28 @@
+<div class="row text-white border-bottom">
+  <div class="col-1">
+    #
+  </div>
+  <div class="col-3">
+    Nom
+  </div>
+  <div class="col-3">
+    Prénom
+  </div>
+  <div class="col-4">
+    Email
+  </div>
+  <div class="col-1">
+
+  </div>
+</div>
+
+<div *ngIf="users.length == 0" class="p-2 text-white">
+  Aucun utilisateur dans cet évènement
+</div>
+
+<app-element-user-event *ngFor="let user of users"
+                        [user]="user"
+                        [event]="event"
+                        (onDelete)="populate()"
+                        class="text-white">
+</app-element-user-event>

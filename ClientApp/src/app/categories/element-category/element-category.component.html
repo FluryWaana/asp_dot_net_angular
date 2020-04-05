@@ -1,0 +1,11 @@
+<div class="row m-0 mt-2 mb-2 p-0">
+  <div class="col-1 text-center">
+    {{ category.categoryId }}
+  </div>
+  <div class="col-10">
+    {{ category.categoryName }}
+  </div>
+  <div class="col-1 text-center">
+    <fa-icon (click)="deleteEvent()" [icon]="faTrashAlt" class="ml-1"></fa-icon>
+  </div>
+</div>
