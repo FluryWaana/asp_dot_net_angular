@@ -1,5 +1,5 @@
 # Projet ASP.NET
-![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE)
 
 Cette application à pour but la gestion d'évènement. Celle-ci est réalisée pour un cours.  
@@ -10,7 +10,7 @@ Si vous souhaitez utiliser cette application:
 
 ## Prérequis
 
-- **MySQL >= 5.7.24**
+- **MySQL >= 5.7.2**
 - **dotnet-ef >= 3.0.0**
 
 ## Importation de la base de données
