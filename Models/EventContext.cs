@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASP_MVC_ANGULAR.Models;
 
 namespace ASP_MVC_ANGULAR.Models
 {
@@ -23,10 +24,11 @@ namespace ASP_MVC_ANGULAR.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            string password = BCrypt.Net.BCrypt.HashPassword("123456");
             modelBuilder.Entity<Participate>().HasKey(p => new { p.UserId, p.EventId });
             modelBuilder.Entity<User>().HasOne(p => p.Role).WithMany(b => b.Users);
             modelBuilder.Entity<User>().HasIndex(p => p.Email).IsUnique(true);
-            modelBuilder.Entity<Event>().HasOne(e => e.Cagegory).WithMany(ce => ce.Events);
+            modelBuilder.Entity<Event>().HasOne(e => e.Category).WithMany(ce => ce.Events);
 
             modelBuilder.Entity<Role>().HasData(
                 new Role()
@@ -53,7 +55,7 @@ namespace ASP_MVC_ANGULAR.Models
                     Email = "admin@admin.com",
                     FirstName = "jean",
                     LastName = "rigole",
-                    Password = "123456",
+                    Password = password,
                     RoleId = 1
                 },
                 new User()
@@ -62,7 +64,7 @@ namespace ASP_MVC_ANGULAR.Models
                     Email = "modo@modo.com",
                     FirstName = "patrick",
                     LastName = "sebastien",
-                    Password = "123456",
+                    Password = password,
                     RoleId = 2
                 },
                 new User()
@@ -71,7 +73,7 @@ namespace ASP_MVC_ANGULAR.Models
                     Email = "user@user.com",
                     FirstName = "jean",
                     LastName = "rigole",
-                    Password = "123456",
+                    Password = password,
                     RoleId = 3
                 }
             );
@@ -90,7 +92,7 @@ namespace ASP_MVC_ANGULAR.Models
                     EventId = 1,
                     Title = "Concours National Agropole 2020",
                     Description = "Tremplin des jeunes pousses de l'agroalimentaire, le Concours national Agropole, dont Bpifrance Création est partenaire, lance sa 27ème édition ! Porteur de projet ou créateur d'une société de moins de 3 ans, une seule condition pour candidater, le caractère innovant de votre entreprise. Un jury prestigieux se réunira au Sénat fin septembre pour désigner les trois lauréats et attribuer des dotations exceptionnelles.",
-                    EventDate = new DateTime(),
+                    EventDate = DateTime.Now,
                     CategoryId = 1
                 },
                 new Event
@@ -98,10 +100,12 @@ namespace ASP_MVC_ANGULAR.Models
                     EventId = 2,
                     Title = "Lancement du prix Des cafés pour nos régions",
                     Description = "Ce concours, organisé par Heineken France, récompense 5 projets de création, de reprise ou de rénovation de cafés, bars ou restaurants en France grâce à une dotation de 10 000 euros par lauréat, un accompagnement Service en tête et une formation au crowdfunding.",
-                    EventDate = new DateTime(),
+                    EventDate = DateTime.Now,
                     CategoryId = 1
                 }
             );
         }
+
+        public DbSet<ASP_MVC_ANGULAR.Models.Category> Category { get; set; }
     }
 }

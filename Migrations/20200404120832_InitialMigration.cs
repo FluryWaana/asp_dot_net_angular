@@ -14,7 +14,7 @@ namespace ASP_NET_ANGULAR.Migrations
                 {
                     category_id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    category_name = table.Column<string>(type: "varchar(60)", nullable: true)
+                    category_name = table.Column<string>(type: "varchar(60)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +27,7 @@ namespace ASP_NET_ANGULAR.Migrations
                 {
                     role_id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    role_name = table.Column<string>(type: "varchar(60)", nullable: true)
+                    role_name = table.Column<string>(type: "varchar(60)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,8 +40,8 @@ namespace ASP_NET_ANGULAR.Migrations
                 {
                     event_id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    event_title = table.Column<string>(type: "varchar(180)", nullable: true),
-                    event_description = table.Column<string>(nullable: true),
+                    event_title = table.Column<string>(type: "varchar(180)", nullable: false),
+                    event_description = table.Column<string>(nullable: false),
                     event_date = table.Column<DateTime>(nullable: false),
                     category_id = table.Column<int>(nullable: false)
                 },
@@ -62,10 +62,10 @@ namespace ASP_NET_ANGULAR.Migrations
                 {
                     user_id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    user_lastname = table.Column<string>(type: "varchar(60)", nullable: true),
-                    user_firstname = table.Column<string>(type: "varchar(60)", nullable: true),
-                    user_email = table.Column<string>(type: "varchar(180)", nullable: true),
-                    user_password = table.Column<string>(nullable: true),
+                    user_lastname = table.Column<string>(type: "varchar(60)", nullable: false),
+                    user_firstname = table.Column<string>(type: "varchar(60)", nullable: false),
+                    user_email = table.Column<string>(type: "varchar(180)", nullable: false),
+                    user_password = table.Column<string>(nullable: false),
                     role_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -123,8 +123,8 @@ namespace ASP_NET_ANGULAR.Migrations
                 columns: new[] { "event_id", "category_id", "event_description", "event_date", "event_title" },
                 values: new object[,]
                 {
-                    { 1, 1, "Tremplin des jeunes pousses de l'agroalimentaire, le Concours national Agropole, dont Bpifrance Création est partenaire, lance sa 27ème édition ! Porteur de projet ou créateur d'une société de moins de 3 ans, une seule condition pour candidater, le caractère innovant de votre entreprise. Un jury prestigieux se réunira au Sénat fin septembre pour désigner les trois lauréats et attribuer des dotations exceptionnelles.", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Concours National Agropole 2020" },
-                    { 2, 1, "Ce concours, organisé par Heineken France, récompense 5 projets de création, de reprise ou de rénovation de cafés, bars ou restaurants en France grâce à une dotation de 10 000 euros par lauréat, un accompagnement Service en tête et une formation au crowdfunding.", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lancement du prix Des cafés pour nos régions" }
+                    { 1, 1, "Tremplin des jeunes pousses de l'agroalimentaire, le Concours national Agropole, dont Bpifrance Création est partenaire, lance sa 27ème édition ! Porteur de projet ou créateur d'une société de moins de 3 ans, une seule condition pour candidater, le caractère innovant de votre entreprise. Un jury prestigieux se réunira au Sénat fin septembre pour désigner les trois lauréats et attribuer des dotations exceptionnelles.", new DateTime(2020, 4, 4, 14, 8, 31, 949, DateTimeKind.Local).AddTicks(6776), "Concours National Agropole 2020" },
+                    { 2, 1, "Ce concours, organisé par Heineken France, récompense 5 projets de création, de reprise ou de rénovation de cafés, bars ou restaurants en France grâce à une dotation de 10 000 euros par lauréat, un accompagnement Service en tête et une formation au crowdfunding.", new DateTime(2020, 4, 4, 14, 8, 31, 952, DateTimeKind.Local).AddTicks(2164), "Lancement du prix Des cafés pour nos régions" }
                 });
 
             migrationBuilder.InsertData(
@@ -132,9 +132,9 @@ namespace ASP_NET_ANGULAR.Migrations
                 columns: new[] { "user_id", "user_email", "user_firstname", "user_lastname", "user_password", "role_id" },
                 values: new object[,]
                 {
-                    { 1, "admin@admin.com", "jean", "rigole", "123456", 1 },
-                    { 2, "modo@modo.com", "patrick", "sebastien", "123456", 2 },
-                    { 3, "user@user.com", "jean", "rigole", "123456", 3 }
+                    { 1, "admin@admin.com", "jean", "rigole", "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe", 1 },
+                    { 2, "modo@modo.com", "patrick", "sebastien", "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe", 2 },
+                    { 3, "user@user.com", "jean", "rigole", "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe", 3 }
                 });
 
             migrationBuilder.CreateIndex(

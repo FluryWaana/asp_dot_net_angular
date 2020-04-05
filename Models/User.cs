@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -12,15 +13,19 @@ namespace ASP_MVC_ANGULAR.Models
         public int UserId { get; set; }
 
         [Column("user_lastname", TypeName = "varchar(60)")]
+        [Required]
         public string LastName { get; set; }
 
         [Column("user_firstname", TypeName = "varchar(60)")]
+        [Required]
         public string FirstName { get; set; }
 
         [Column("user_email", TypeName = "varchar(180)")]
+        [Required]
         public string Email { get; set; }
 
         [Column("user_password")]
+        [Required]
         [JsonIgnore]
         public string Password { get; set; }
 

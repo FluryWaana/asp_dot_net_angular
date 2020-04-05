@@ -1,0 +1,28 @@
+<div class="row m-0 mt-2 mb-2 p-0">
+  <div class="col-1 text-center">
+    {{ event.eventId }}
+  </div>
+  <div class="col-3">
+    {{ event.title }}
+  </div>
+  <div class="col-2">
+    {{ event.category.categoryName }}
+  </div>
+  <div class="col-2 text-center">
+    {{ event.eventDate | date:'dd/MM/y' }}
+  </div>
+  <div class="col-3">
+    {{ (event.description.length>6)? (event.description | slice:0:30)+'...':(event.description) }}
+  </div>
+  <div class="col-1 text-center">
+    <fa-icon [icon]="faEye" (click)="listUsersIsVisible()"></fa-icon>
+    <fa-icon [icon]="faEdit" class="ml-1" (click)="editerFormIsVisible()"></fa-icon>
+    <fa-icon [icon]="faTrashAlt" class="ml-1" (click)="deleteEvent()"></fa-icon>
+  </div>
+  <div class="col-12 border-bottom border-top rounded bg-dark" *ngIf="editIsVisible">
+    <app-edit-event [event]="event" (addEventEmitter)="updateOldEvent($event)"></app-edit-event>
+  </div>
+  <div class="col-12 border-bottom border-top rounded bg-dark" *ngIf="listIsVisible">
+    <app-users-event [event]="event"></app-users-event>
+  </div>
+ </div>

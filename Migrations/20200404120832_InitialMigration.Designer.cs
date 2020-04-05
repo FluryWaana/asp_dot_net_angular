@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP_NET_ANGULAR.Migrations
 {
     [DbContext(typeof(EventContext))]
-    [Migration("20200403165321_InitialMigration")]
+    [Migration("20200404120832_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,7 @@ namespace ASP_NET_ANGULAR.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CategoryName")
+                        .IsRequired()
                         .HasColumnName("category_name")
                         .HasColumnType("varchar(60)");
 
@@ -54,6 +55,7 @@ namespace ASP_NET_ANGULAR.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnName("event_description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -62,6 +64,7 @@ namespace ASP_NET_ANGULAR.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnName("event_title")
                         .HasColumnType("varchar(180)");
 
@@ -77,7 +80,7 @@ namespace ASP_NET_ANGULAR.Migrations
                             EventId = 1,
                             CategoryId = 1,
                             Description = "Tremplin des jeunes pousses de l'agroalimentaire, le Concours national Agropole, dont Bpifrance Création est partenaire, lance sa 27ème édition ! Porteur de projet ou créateur d'une société de moins de 3 ans, une seule condition pour candidater, le caractère innovant de votre entreprise. Un jury prestigieux se réunira au Sénat fin septembre pour désigner les trois lauréats et attribuer des dotations exceptionnelles.",
-                            EventDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventDate = new DateTime(2020, 4, 4, 14, 8, 31, 949, DateTimeKind.Local).AddTicks(6776),
                             Title = "Concours National Agropole 2020"
                         },
                         new
@@ -85,7 +88,7 @@ namespace ASP_NET_ANGULAR.Migrations
                             EventId = 2,
                             CategoryId = 1,
                             Description = "Ce concours, organisé par Heineken France, récompense 5 projets de création, de reprise ou de rénovation de cafés, bars ou restaurants en France grâce à une dotation de 10 000 euros par lauréat, un accompagnement Service en tête et une formation au crowdfunding.",
-                            EventDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EventDate = new DateTime(2020, 4, 4, 14, 8, 31, 952, DateTimeKind.Local).AddTicks(2164),
                             Title = "Lancement du prix Des cafés pour nos régions"
                         });
                 });
@@ -115,6 +118,7 @@ namespace ASP_NET_ANGULAR.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RoleName")
+                        .IsRequired()
                         .HasColumnName("role_name")
                         .HasColumnType("varchar(60)");
 
@@ -148,18 +152,22 @@ namespace ASP_NET_ANGULAR.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnName("user_email")
                         .HasColumnType("varchar(180)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnName("user_firstname")
                         .HasColumnType("varchar(60)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnName("user_lastname")
                         .HasColumnType("varchar(60)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnName("user_password")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -183,7 +191,7 @@ namespace ASP_NET_ANGULAR.Migrations
                             Email = "admin@admin.com",
                             FirstName = "jean",
                             LastName = "rigole",
-                            Password = "123456",
+                            Password = "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe",
                             RoleId = 1
                         },
                         new
@@ -192,7 +200,7 @@ namespace ASP_NET_ANGULAR.Migrations
                             Email = "modo@modo.com",
                             FirstName = "patrick",
                             LastName = "sebastien",
-                            Password = "123456",
+                            Password = "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe",
                             RoleId = 2
                         },
                         new
@@ -201,14 +209,14 @@ namespace ASP_NET_ANGULAR.Migrations
                             Email = "user@user.com",
                             FirstName = "jean",
                             LastName = "rigole",
-                            Password = "123456",
+                            Password = "$2b$10$5aLx7j4EgP4F27HGh8kaXu/JxyTIIFUulLn3WDmLnI0qr08cVvAoe",
                             RoleId = 3
                         });
                 });
 
             modelBuilder.Entity("ASP_MVC_ANGULAR.Models.Event", b =>
                 {
-                    b.HasOne("ASP_MVC_ANGULAR.Models.Category", "Cagegory")
+                    b.HasOne("ASP_MVC_ANGULAR.Models.Category", "Category")
                         .WithMany("Events")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

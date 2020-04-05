@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace ASP_NET_ANGULAR
 {
@@ -20,10 +21,11 @@ namespace ASP_NET_ANGULAR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string envMysql = Environment.GetEnvironmentVariable("CONNECTION_STRING");
             services.AddDbContext<ASP_MVC_ANGULAR.Models.EventContext>(options =>
-                    options.UseMySql(Configuration.GetConnectionString("EventContext"))
-                );
-
+                    options.UseMySql( ( string.IsNullOrEmpty(envMysql) ) ? Configuration.GetConnectionString("EventContext") : envMysql)
+            );
+            
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

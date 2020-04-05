@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "CONNECTION_STRING": "server=localhost;port=3306;userid=root;password=;database=events;persistsecurityinfo=True",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
