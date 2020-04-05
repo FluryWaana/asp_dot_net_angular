@@ -1,1 +1,37 @@
-<p>categories works!</p>
+<div class="card">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col">
+        <h1 style="font-size:1.6rem">Liste des catégories</h1>
+      </div>
+      <div class="col-1 my-auto text-center">
+        <fa-icon (click)="addIsVisible()" [icon]="faPlusCircle" class="fa-lg mr-1"></fa-icon>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row p-0">
+      <div *ngIf="formAddIsVisible" class="col-12 border-bottom">
+        <app-ajouter-category (addCategoryEmitter)="onEmitAddEvent()"></app-ajouter-category>
+      </div>
+      <div class="col-1 text-center">
+        <strong>#</strong>
+      </div>
+      <div class="col-10">
+        <strong>Nom</strong>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-12 border-bottom"></div>
+      <div *ngIf="! ready" class="text-center col-12">
+        <app-spinner></app-spinner>
+      </div>
+      <div *ngIf="ready" class="col-12 p-0">
+        <app-element-category (onDelete)="populate()" *ngFor="let category of categories"
+                              [category]="category"
+                              class="col-12 border-bottom p-1">
+        </app-element-category>
+      </div>
+    </div>
+  </div>
+</div>

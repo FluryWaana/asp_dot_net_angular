@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { User } from '../../../../shared/models/user';
-import { Event } from '../../../../shared/models/event';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { EventService } from '../../../../shared/services/event.service';
-import { NotificationService } from '../../../../shared/services/notification.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {User} from '../../../../shared/models/user';
+import {Event} from '../../../../shared/models/event';
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {EventService} from '../../../../shared/services/event.service';
+import {NotificationService} from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-element-user-event',
@@ -27,17 +27,16 @@ export class ElementUserEventComponent implements OnInit {
   }
 
   deleteUserEvent() {
-    if (confirm("Êtes-vous sur de vouloir supprimer l'utilisateur " + this.user.lastName.toUpperCase() + " " + this.user.firstName + " de l'évènement?")) {
+    if (confirm('Êtes-vous sur de vouloir supprimer l\'utilisateur ' + this.user.lastName.toUpperCase() + ' ' + this.user.firstName + ' de l\'évènement?')) {
       this.eventService.removeUserFromEvent(this.event, this.user).subscribe(
         (response) => {
           this.onDelete.emit(null);
-          this.notifyService.showSuccess("Utilisateur retiré de l'évènement!", "Success");
+          this.notifyService.showSuccess('Utilisateur retiré de l\'évènement!', 'Success');
         },
         (errorResponse) => {
-          this.notifyService.showError("Une erreur est survenue lors de la suppression de l'utilisateur dans l'évènement", "Erreur");
-          // Gérer erreur (serveur, form)
+          this.notifyService.showError('Une erreur est survenue lors de la suppression de l\'utilisateur dans l\'évènement', 'Erreur');
         }
-      )
+      );
     }
   }
 

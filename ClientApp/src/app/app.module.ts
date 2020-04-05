@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -19,6 +19,8 @@ import {EditEventComponent} from './events/element-event/edit-event/edit-event.c
 import {UsersEventComponent} from './events/element-event/users-event/users-event.component';
 import {ElementUserEventComponent} from './events/element-event/users-event/element-user-event/element-user-event.component';
 import {CategoriesComponent} from './categories/categories.component';
+import {ElementCategoryComponent} from './categories/element-category/element-category.component';
+import {AjouterCategoryComponent} from './categories/ajouter-category/ajouter-category.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {CategoriesComponent} from './categories/categories.component';
     SpinnerComponent,
     UsersEventComponent,
     ElementUserEventComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ElementCategoryComponent,
+    AjouterCategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

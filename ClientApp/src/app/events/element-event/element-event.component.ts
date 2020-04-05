@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Event } from '../../shared/models/event';
-import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
-import { EventService } from '../../shared/services/event.service';
-import { NotificationService } from '../../shared/services/notification.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Event} from '../../shared/models/event';
+import {faEdit, faEye, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {EventService} from '../../shared/services/event.service';
+import {NotificationService} from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-element-event',
@@ -50,15 +50,14 @@ export class ElementEventComponent implements OnInit {
   }
 
   deleteEvent() {
-    if (confirm("Êtes-vous sur de vouloir supprimer l'évènement " + this.event.title)) {
+    if (confirm('Êtes-vous sur de vouloir supprimer l\'évènement ' + this.event.title)) {
       this.eventService.removeEvent(this.event).subscribe(
         (response) => {
-          this.notifyService.showSuccess("Évènement supprimé!", "Success");
+          this.notifyService.showSuccess('Évènement supprimé!', 'Success');
           this.onDelete.emit(null);
         },
         (errorResponse) => {
-          this.notifyService.showError("Impossible de supprimer un évènement qui contient des utilisateurs", "Erreur");
-          // TODO Gérer erreur (serveur, formulaire)
+          this.notifyService.showError('Impossible de supprimer un évènement qui contient des utilisateurs', 'Erreur');
         });
     }
   }

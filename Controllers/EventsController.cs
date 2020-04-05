@@ -52,7 +52,7 @@ namespace ASP_NET_ANGULAR.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEvent(int id, Event @event)
+        public async Task<ActionResult<Event>> PutEvent(int id, Event @event)
         {
             if (id != @event.EventId)
             {
@@ -77,7 +77,9 @@ namespace ASP_NET_ANGULAR.Controllers
                 }
             }
 
-            return NoContent();
+            @event.Category = _context.Category.Find(@event.CategoryId);
+
+            return @event;
         }
 
         // POST: api/Events

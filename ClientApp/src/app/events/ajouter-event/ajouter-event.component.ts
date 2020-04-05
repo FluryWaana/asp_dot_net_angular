@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EventService } from '../../shared/services/event.service';
-import { Event } from '../../shared/models/event';
-import { NotificationService } from '../../shared/services/notification.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EventService} from '../../shared/services/event.service';
+import {Event} from '../../shared/models/event';
+import {NotificationService} from '../../shared/services/notification.service';
 import {Category} from '../../shared/models/category';
 import {CategoryService} from '../../shared/services/category.service';
 
@@ -53,27 +53,25 @@ export class AjouterEventComponent implements OnInit {
     const categoryId = this.form.get('categoryId');
     const value = categoryId.value;
 
-    if (value != '') {
-      categoryId.setValue(+ value );
+    if (value !== '') {
+      categoryId.setValue(+value);
     }
   }
 
   onSubmit() {
-    console.log(new Event(this.form.value));
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
 
     this.eventService.addEvent(new Event(this.form.value)).subscribe(
-      (response) => {
+      () => {
         this.addEventEmitter.emit(null);
         this.onReset();
         this.notifyService.showSuccess('Évènement ajouté!', 'Success');
       },
-      (responseError) => {
+      () => {
         this.notifyService.showError('Une erreur est survenue lors de la création de l\'évènement', 'Erreur');
-        // TODO Gérer les erreurs (formulaire, serveur)
       }
     );
   }
@@ -86,5 +84,4 @@ export class AjouterEventComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
-
 }

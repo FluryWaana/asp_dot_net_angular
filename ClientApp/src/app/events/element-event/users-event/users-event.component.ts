@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../../shared/models/user';
-import { Event } from '../../../shared/models/event';
-import { EventService } from '../../../shared/services/event.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {User} from '../../../shared/models/user';
+import {Event} from '../../../shared/models/event';
+import {EventService} from '../../../shared/services/event.service';
 
 @Component({
   selector: 'app-users-event',
@@ -16,16 +16,15 @@ export class UsersEventComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.users = new Array();
+    this.users = [];
     this.populate();
   }
 
   populate() {
     this.eventService.getUsersByEvent(this.event).subscribe(
       (response) => {
-        this.users = new Array();
+        this.users = [];
         response.map(user => this.users.push(new User().deserialize(user)));
-        console.log(this.users);
       },
       (errorResponse) => {
         // TODO Gérer erreurs (serveur);

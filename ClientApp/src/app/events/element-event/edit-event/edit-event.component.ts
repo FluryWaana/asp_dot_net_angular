@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Event } from '../../../shared/models/event';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EventService } from '../../../shared/services/event.service';
-import { NotificationService } from '../../../shared/services/notification.service';
-import { Category } from '../../../shared/models/category';
-import { CategoryService } from '../../../shared/services/category.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Event} from '../../../shared/models/event';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EventService} from '../../../shared/services/event.service';
+import {NotificationService} from '../../../shared/services/notification.service';
+import {Category} from '../../../shared/models/category';
+import {CategoryService} from '../../../shared/services/category.service';
 
 @Component({
   selector: 'app-edit-event',
@@ -12,7 +12,7 @@ import { CategoryService } from '../../../shared/services/category.service';
   styleUrls: ['./edit-event.component.css']
 })
 export class EditEventComponent implements OnInit {
-  @Input() event: Event
+  @Input() event: Event;
   @Output() addEventEmitter: EventEmitter<Event> = new EventEmitter();
 
   form: FormGroup;
@@ -38,7 +38,7 @@ export class EditEventComponent implements OnInit {
         this.ready = true;
       },
       (errorResponse) => {
-        // TODO Traitement si erreur (formulaire, serveur)
+        this.notifyService.showError('Une erreur est survenue lors de la récupération des catégories', 'Erreur');
       }
     );
 
@@ -55,8 +55,8 @@ export class EditEventComponent implements OnInit {
     const categoryId = this.form.get('categoryId');
     const value = categoryId.value;
 
-    if (value != '') {
-      categoryId.setValue(+ value);
+    if (value !== '') {
+      categoryId.setValue(+value);
     }
   }
 
@@ -67,15 +67,13 @@ export class EditEventComponent implements OnInit {
       return;
     }
 
-    let evt: Event = new Event(this.form.value);
-    this.eventService.updateEvent(evt).subscribe(
+    this.eventService.updateEvent(new Event(this.form.value)).subscribe(
       (response) => {
-        this.notifyService.showSuccess("Évènement mis à jour!","Success");
-        this.addEventEmitter.emit(evt);
+        this.notifyService.showSuccess('Évènement mis à jour!', 'Success');
+        this.addEventEmitter.emit(new Event(response));
       },
       (responseError) => {
-        this.notifyService.showError("Une erreur est survenue lors de la modification de l'évènement", "Erreur");
-        // TODO Gérer les erreurs (formulaire, serveur)
+        this.notifyService.showError('Une erreur est survenue lors de la modification de l\'évènement', 'Erreur');
       }
     );
   }
