@@ -9,6 +9,10 @@ code {
   color: #e01a76;
 }
 
+body, .bg-dark-s {
+  background: #434343;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

@@ -1,7 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark-s border-bottom box-shadow mb-3">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">ASP_NET_ANGULAR</a>
+      <a class="navbar-brand text-white-50" [routerLink]="['/']">ASP_NET_ANGULAR</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -12,22 +12,29 @@
         (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-white-50" [routerLink]="['/']">Accueil</a>
           </li>
           <li class="nav-item"
               [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/events']">Évènements</a>
+            <a class="nav-link text-white-50" [routerLink]="['/events']">Évènements</a>
           </li>
           <li [routerLinkActive]="['link-active']"
               class="nav-item">
-            <a [routerLink]="['/categories']" class="nav-link text-dark">Catégories</a>
+            <a [routerLink]="['/categories']" class="nav-link text-white-50">Catégories</a>
+          </li>
+          <li [routerLinkActive]="['link-active']"
+              class="nav-item">
+            <a [routerLink]="['/']" class="nav-link text-white-50">Connexion</a>
+          </li>
+          <li [routerLinkActive]="['link-active']"
+              class="nav-item">
+            <a [routerLink]="['/']" class="nav-link text-white-50">S'enregistrer</a>
           </li>
         </ul>
       </div>
