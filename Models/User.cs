@@ -29,6 +29,9 @@ namespace ASP_MVC_ANGULAR.Models
         [JsonIgnore]
         public string Password { get; set; }
 
+        [NotMapped]
+        public string PlainPassword { get; set; }
+
         [JsonIgnore]
         public ICollection<Participate> Participates { get; set; }
 
