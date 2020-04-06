@@ -29,7 +29,7 @@ namespace ASP_NET_ANGULAR.Controllers
             var user = _userService.Authenticate(model);
 
             if (user == null)
-                return BadRequest(new { message = "Le username ou le password est incorrect" });
+                return BadRequest(new { message = "Identifiants incorrects, veuillez vérifier votre email et mot de passe." });
 
             return Ok(user);
         }

@@ -21,19 +21,23 @@
             <a class="nav-link text-white-50" [routerLink]="['/']">Accueil</a>
           </li>
           <li class="nav-item"
-              [routerLinkActive]="['link-active']">
+              [routerLinkActive]="['link-active']" *ngIf="authService.getIsAuth()">
             <a class="nav-link text-white-50" [routerLink]="['/events']">Évènements</a>
           </li>
-          <li [routerLinkActive]="['link-active']"
-              class="nav-item">
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']" *ngIf="authService.getIsAuth()">
             <a [routerLink]="['/categories']" class="nav-link text-white-50">Catégories</a>
           </li>
-          <li [routerLinkActive]="['link-active']"
-              class="nav-item">
-            <a [routerLink]="['/']" class="nav-link text-white-50">Connexion</a>
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']" *ngIf="authService.getIsAuth()">
+            <a [routerLink]="['/logout']" class="nav-link text-white-50">Déconnexion</a>
           </li>
           <li [routerLinkActive]="['link-active']"
-              class="nav-item">
+              class="nav-item" *ngIf="!authService.getIsAuth()">
+            <a [routerLink]="['/login']" class="nav-link text-white-50">Connexion</a>
+          </li>
+          <li [routerLinkActive]="['link-active']"
+              class="nav-item" *ngIf="!authService.getIsAuth()">
             <a [routerLink]="['/']" class="nav-link text-white-50">S'enregistrer</a>
           </li>
         </ul>
