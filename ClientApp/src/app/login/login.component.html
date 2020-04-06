@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card w-50 m-auto">
+  <h1 class="card-header">Authentification</h1>
+  <div class="card-body">
+    <div class="form-group">
+      <label for="username">Identifiant</label>
+      <input type="text" id="username" formControlName="username" placeholder="Identifiant..." class="form-control" autocomplete="off"
+             [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">L'identifiant est obligatoire</div>
+        <div *ngIf="f.username.errors.maxlength">Le nombre de caractère maximum est de 180</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" formControlName="password" placeholder="Mot de passe..." class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-primary">Connexion</button>
+    </div>
+    <div class="alert alert-danger" *ngIf="hasError">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cleanError()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>{{ error }}</strong>
+    </div>
+  </div>
+</form>
