@@ -82,6 +82,8 @@ namespace ASP_NET_ANGULAR.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.RoleId = 3; // TODO
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -103,6 +105,58 @@ namespace ASP_NET_ANGULAR.Controllers
 
             return user;
         }
+
+        // GET: api/Users/5/events
+        [HttpGet("{id}/events")]
+        public async Task<ActionResult<IEnumerable<Event>>> GetEventUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Events.Include(e => e.Category).Where(e => e.Participates.Any(e => e.UserId == id)).ToListAsync();
+        }
+
+        // DELETE: api/Users/5
+        [HttpDelete("{id}/events/{id_event}")]
+        public async Task<ActionResult<User>> DeleteEventByUser(int id, int id_event)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var participate = _context.Participates.Where(p => p.EventId == id_event && p.UserId == id).FirstOrDefault();
+
+            if( participate != null )
+            {
+                _context.Participates.Remove(participate);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+
+            return NotFound();
+        }
+
+        // GET: api/Users/5/events
+        [HttpGet("{id}/events/no-participate")]
+        public async Task<ActionResult<IEnumerable<Event>>> GetEventUserNoParticipate(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return await _context.Events.ToListAsync();
+        }
+
+
 
         private bool UserExists(int id)
         {

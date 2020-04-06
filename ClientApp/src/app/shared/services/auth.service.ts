@@ -31,6 +31,10 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  addUser(user: User): Observable<User> {
+    return this.httpClient.post<User>(environment.api_url + 'users', user);
+  }
+
   authSuccess(user, token): void {
     this.setUser(user);
     this.setToken(token);

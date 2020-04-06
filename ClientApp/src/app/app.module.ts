@@ -26,6 +26,10 @@ import {LogoutComponent} from './logout/logout.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuard} from './shared/guards/auth.guard';
 import {TokenInterceptorService} from './shared/interceptors/token-interceptor.service';
+import { MyEventsComponent } from './account/my-events/my-events.component';
+import { AddMyEventsComponent } from './account/my-events/add-my-events/add-my-events.component';
+import { ElementMyEventsComponent } from './account/my-events/element-my-events/element-my-events.component';
+import {SignupComponent} from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import {TokenInterceptorService} from './shared/interceptors/token-interceptor.s
     ElementCategoryComponent,
     AjouterCategoryComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    MyEventsComponent,
+    AddMyEventsComponent,
+    ElementMyEventsComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
