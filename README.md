@@ -1,5 +1,5 @@
 # Projet ASP.NET
-![Version](https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-1.2-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE)
 
 Cette application à pour but la gestion d'évènement. Celle-ci est réalisée pour un cours.  

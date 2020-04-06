@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -21,6 +21,15 @@ import {ElementUserEventComponent} from './events/element-event/users-event/elem
 import {CategoriesComponent} from './categories/categories.component';
 import {ElementCategoryComponent} from './categories/element-category/element-category.component';
 import {AjouterCategoryComponent} from './categories/ajouter-category/ajouter-category.component';
+import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './logout/logout.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthGuard} from './shared/guards/auth.guard';
+import {TokenInterceptorService} from './shared/interceptors/token-interceptor.service';
+import { MyEventsComponent } from './account/my-events/my-events.component';
+import { AddMyEventsComponent } from './account/my-events/add-my-events/add-my-events.component';
+import { ElementMyEventsComponent } from './account/my-events/element-my-events/element-my-events.component';
+import {SignupComponent} from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -37,24 +46,34 @@ import {AjouterCategoryComponent} from './categories/ajouter-category/ajouter-ca
     ElementUserEventComponent,
     CategoriesComponent,
     ElementCategoryComponent,
-    AjouterCategoryComponent
+    AjouterCategoryComponent,
+    LoginComponent,
+    LogoutComponent,
+    MyEventsComponent,
+    AddMyEventsComponent,
+    ElementMyEventsComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'events', component: EventsComponent},
-      {path: 'categories', component: CategoriesComponent}
-    ]),
+    AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row m-0">
+      <div class="col">
+        <h1 style="font-size:1.6rem">Liste des évènements où je participe...</h1>
+      </div>
+      <div class="col-1 my-auto text-center">
+        <fa-icon [icon]="faPlusCircle" class="fa-lg mr-1" (click)="addIsVisible()"></fa-icon>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row p-0">
+      <div class="col-12 border-bottom" *ngIf="formAddIsVisible">
+        <app-add-my-events (addEventEmitter)="onEmitAddEvent()"></app-add-my-events>
+      </div>
+      <div class="col-1 text-center">
+        <strong>#</strong>
+      </div>
+      <div class="col-3">
+        <strong>Nom</strong>
+      </div>
+      <div class="col-2">
+        <strong>Catégorie</strong>
+      </div>
+      <div class="col-2 text-center">
+        <strong>Date</strong>
+      </div>
+      <div class="col-3">
+        <strong>Description</strong>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-12 border-bottom"></div>
+      <div *ngIf="! ready" class="text-center col-12">
+        <app-spinner></app-spinner>
+      </div>
+      <div *ngIf="ready" class="col-12 p-0">
+        <app-element-my-events *ngFor="let event of events" class="col-12 border-bottom p-1"
+                           [event]="event"
+                           (onDelete)="populate()">
+        </app-element-my-events>
+      </div>
+    </div>
+  </div>
+</div>
